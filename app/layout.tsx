@@ -7,8 +7,7 @@ export default function RootLayout({ children }) {
       <body>
         <header>
           <nav>
-            <Link href="/">Go home</Link>&nbsp;&nbsp;&nbsp;
-            <Link href="/other">Go to /other</Link>
+            <Link href="/">Go home</Link>
           </nav>
         </header>
         {children}
