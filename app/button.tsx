@@ -9,6 +9,8 @@ export function Button({ children }) {
   console.log("pending status", pending);
 
   return (
-    <button disabled={pending}>{pending ? "submitting" : children}</button>
+    <button type="submit" disabled={pending}>
+      {pending ? "submitting" : children}
+    </button>
   );
 }

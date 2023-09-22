@@ -1,19 +1,24 @@
+"use client";
+import { addToCart } from "@/app/serverActions";
 import * as React from "react";
-import { Button } from "@/app/button";
+import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
-async function loginUser(_: FormData) {
-  "use server";
+function SubmitButton() {
+  const { pending } = useFormStatus();
 
-  //This console.log printed twice by clicking `Add to cart` button
-  console.log("addToCart");
+  return (
+    <button type="submit" aria-disabled={pending}>
+      Add to cart
+    </button>
+  );
 }
 
 export default async function Page() {
   return (
     <>
       <h1>Add to cart</h1>
-      <form action={loginUser}>
-        <Button>Add to cart</Button>
+      <form action={addToCart}>
+        <SubmitButton />
       </form>
     </>
   );
