@@ -21,7 +21,7 @@ stream.on("event1", async () => {
   // await pusher.trigger("my-channel", "my-event", {
   //   message: "hello world",
   // });
-  emitEvent("event2", {
+  await emitEvent("event2", {
     id: "123",
   });
 });
