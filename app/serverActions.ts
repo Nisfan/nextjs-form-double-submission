@@ -1,16 +1,29 @@
 "use server";
 import EventEmitter from "events";
+import Pusher from "pusher";
 
 export const sleep = (timeout: number) =>
   new Promise((resolve) => setTimeout(resolve, timeout));
 
 const stream = new EventEmitter();
 
+const pusher = new Pusher({
+  appId: "1695219",
+  key: "2bc7d2510c58ce4f5253",
+  secret: "f46c40bf045cf9a303ed",
+  cluster: "mt1",
+  useTLS: true,
+});
+
 stream.on("event1", async () => {
   await sleep(2000);
 
-  emitEvent("event2", {
-    id: "123",
+  // emitEvent("event2", {
+  //   id: "123",
+  // });
+
+  pusher.trigger("my-channel", "my-event", {
+    message: "hello world",
   });
 });
 
