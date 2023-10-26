@@ -8,6 +8,7 @@ export default function SSE() {
   const [isPending, startTransition] = useTransition();
 
   React.useEffect(() => {
+    console.log("listening to SSE event");
     const eventSource = new EventSource(
       `${process.env.NEXT_PUBLIC_SSE_URL}/sse`,
     );
