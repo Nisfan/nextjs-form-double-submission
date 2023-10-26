@@ -36,13 +36,13 @@ export default function SSE() {
     eventSource.addEventListener("open", openEvenListener);
     eventSource.addEventListener("error", errorEvenListener);
 
-    return () => {
-      eventSource.close();
-      eventSource.removeEventListener("session1", eventMessageListener);
-      eventSource.removeEventListener("open", openEvenListener);
-      eventSource.removeEventListener("error", errorEvenListener);
-    };
+    // return () => {
+    //   eventSource.close();
+    //   eventSource.removeEventListener("session1", eventMessageListener);
+    //   eventSource.removeEventListener("open", openEvenListener);
+    //   eventSource.removeEventListener("error", errorEvenListener);
+    // };
   }, []);
 
-  return null;
+  return <div />;
 }
