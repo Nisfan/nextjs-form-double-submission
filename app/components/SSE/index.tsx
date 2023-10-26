@@ -23,6 +23,10 @@ export default function SSE() {
     channel.bind("my-event", function (data) {
       console.log(data.message);
     });
+
+    return () => {
+      channel.unsubscribe();
+    };
   }, []);
 
   // React.useEffect(() => {
