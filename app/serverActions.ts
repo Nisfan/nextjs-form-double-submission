@@ -15,39 +15,43 @@ const pusher = new Pusher({
   useTLS: true,
 });
 
-// stream.on("event1", async () => {
-//   await sleep(2000);
-//
-//   // emitEvent("event2", {
-//   //   id: "123",
-//   // });
-//
-// });
+stream.on("event1", async () => {
+  await sleep(2000);
 
-// async function emitEvent(eventType: string, data: Record<string, any> | null) {
-//   const body = {
-//     sessionId: "session1",
-//     event: eventType,
-//     data,
-//   };
-//   const request = await fetch(`${process.env.NEXT_PUBLIC_SSE_URL}/sse`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(body),
-//   });
-//
-//   return request.json();
-// }
+  // await pusher.trigger("my-channel", "my-event", {
+  //   message: "hello world",
+  // });
+  emitEvent("event2", {
+    id: "123",
+  });
+});
+
+async function emitEvent(eventType: string, data: Record<string, any> | null) {
+  const body = {
+    sessionId: "session1",
+    event: eventType,
+    data,
+  };
+  const request = await fetch(`${process.env.NEXT_PUBLIC_SSE_URL}/sse`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  await request.json();
+}
 
 export async function addToCart(prevState: any, _: FormData) {
   //This console.log printed twice by clicking `Add to cart` button
 
-  await pusher.trigger("my-channel", "my-event", {
-    message: "hello world",
-  });
-  // stream.emit("event1");
+  stream.emit("event1");
+  // stream.once("event1", async () => {
+  //   await emitEvent("event2", {
+  //     id: "123",
+  //   });
+  // });
 
   return {
     error: null,
