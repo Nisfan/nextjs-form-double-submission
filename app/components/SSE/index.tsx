@@ -3,6 +3,8 @@
 import React, { useTransition } from "react";
 import { useRouter } from "next/navigation";
 
+export const runtime = "edge"; // 'nodejs' (default) | 'edge'
+
 export default function SSE() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
