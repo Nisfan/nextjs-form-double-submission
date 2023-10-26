@@ -32,15 +32,19 @@ async function emitEvent(eventType: string, data: Record<string, any> | null) {
     event: eventType,
     data,
   };
-  const request = await fetch(`${process.env.NEXT_PUBLIC_SSE_URL}/sse`, {
+
+  console.log("emitEvent.body", body);
+  const url = `${process.env.NEXT_PUBLIC_SSE_URL}/sse`;
+  const request = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
   });
+  console.log("emitEvent.request", request);
 
-  await request.json();
+  // await request.json();
 }
 
 export async function addToCart(prevState: any, _: FormData) {
